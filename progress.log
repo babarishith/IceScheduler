@@ -1,3 +1,6 @@
 [2016-02-15 14:40:32] START
 [2016-02-15 15:28:51] CREATE schedule.py: 0
 [2016-02-15 15:29:11] CREATE schedule/index.html: 0
+[2016-02-15 17:11:16] CREATE default/league.html: 0
+[2016-02-15 17:29:25] DELETE IceScheduler/views/default/league.html: -4
+[2016-02-15 17:29:46] CREATE schedule/league.html: 0

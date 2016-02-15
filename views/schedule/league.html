@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<h2>League Schedule</h2>
+<table class="table table-striped">
+<tbody>
+{{for i in range(num):}}
+<tr>
+<td>{{=i+1}}</td>
+<td>{{=matches[i][0]}}</td>
+<td>:</td>
+<td>{{=matches[i][1]}}</td>
+</tr>
+{{pass}}
+</tbody>
+</table>
