@@ -1,7 +1,22 @@
 {{extend 'layout.html'}}
 <h2>League Schedule</h2>
+<style type="text/css">
+	th 
+	{
+		text-align: center;
+	}
+</style>
 <table class="table table-striped table-bordered" style="text-align:center;">
 <tbody>
+<thead>
+	<tr>
+		<th>Sno</th>
+		{{if rinks>1:}}
+		<th>Location</th>
+		{{pass}}
+		<th colspan="3">Game</th>
+	</tr>
+</thead>
 {{for i in range(len(matches)):}}
 <tr>
 {{if rinks==1:}}
