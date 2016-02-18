@@ -19,7 +19,8 @@ def league():
 	rotation = ["Team" + str(i+1) for i in range(num)]
 
 	if num % 2:
-		rotation.append('BYE') 
+		rotation.append('BYE')
+		num += 1
 
 	fixtures = []
 	for i in range(0, num-1):
