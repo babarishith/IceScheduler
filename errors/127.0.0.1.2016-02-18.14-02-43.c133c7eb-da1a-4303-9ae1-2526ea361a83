@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.ValueError'> invalid literal for int() with base 10: ''"
+p3
+sS'layer'
+p4
+S'/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n# try something like\ndef index(): \n\treturn dict(message="hello from schedule.py")\n\ndef league():\n\tnum = int(request.vars.number)\n\trotation = ["Team" + str(i+1) for i in range(num)]\n\n\tif num % 2:\n\t\trotation.append(\'BYE\') \n\n\tfixtures = []\n\tfor i in range(0, num-1):\n\t\tfixtures.append(rotation)\n\t\trotation = [rotation[0]] + [rotation[-1]] + rotation[1:-1]\n\tmatches = []\n\tfor f in fixtures:    \n\t\tfor i in range(len(f)/2):\n\t\t\tif "BYE" not in (f[i], f[num-i-1]):\n\t\t\t\tmatches.append(tuple((f[i], f[num-i-1])))\n\treturn locals()\nresponse._vars=response._caller(league)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rishith/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py", line 23, in <module>\n  File "/home/rishith/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py", line 7, in league\n    num = int(request.vars.number)\nValueError: invalid literal for int() with base 10: \'\'\n'
+p11
+s.
