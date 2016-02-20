@@ -12,7 +12,7 @@
 	<tr>
 		<th>Sno</th>
 		{{if rinks>1:}}
-		<th>Location</th>
+		<th>Arena</th>
 		{{pass}}
 		<th colspan="3">Game</th>
 	</tr>
@@ -22,7 +22,7 @@
 {{if rinks==1:}}
 <td>{{=i+1}}</td>
 {{else:}}
-<td>{{=i/rinks+1}}</td>
+<td>{{=i+1}}</td>
 <td>Rink{{=i%rinks + 1}}</td>
 {{pass}}
 <td>{{=matches[i][0]}}</td>

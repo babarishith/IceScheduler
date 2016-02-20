@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # try something like
-def index(): 
+def index():
+	games = games = db(db.games.id > 0).select()
+	return locals()
+
+def game(): 
 	return dict(message="hello from schedule.py")
 
 def league():

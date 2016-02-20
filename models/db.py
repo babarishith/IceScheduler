@@ -89,5 +89,9 @@ auth.settings.reset_password_requires_verification = True
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
 
+db.define_table('games',
+               Field('name', 'string', label='Name', unique=True),
+               Field('pitch', 'string', label='Pitch (Sports Field)', requires=IS_NOT_EMPTY()))
+
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

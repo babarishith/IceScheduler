@@ -24,7 +24,8 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
-    (T('Scheduler'), False, URL('schedule', 'index'), [])
+    (T('Scheduler'), False, URL('schedule', 'index'), []),
+    (T('Games'), False, URL('game', 'index'), [])
 ]
 
 DEVELOPMENT_MENU = False
