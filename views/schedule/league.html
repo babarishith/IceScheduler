@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-<h2>League Schedule</h2>
+<h2>{{=game}} League Schedule</h2>
 <style type="text/css">
 	th 
 	{
@@ -11,7 +11,7 @@
 <thead>
 	<tr>
 		<th>Sno</th>
-		{{if rinks>1:}}
+		{{if arenas>1:}}
 		<th>Arena</th>
 		{{pass}}
 		<th colspan="3">Game</th>
@@ -19,11 +19,11 @@
 </thead>
 {{for i in range(len(matches)):}}
 <tr>
-{{if rinks==1:}}
+{{if arenas==1:}}
 <td>{{=i+1}}</td>
 {{else:}}
 <td>{{=i+1}}</td>
-<td>Rink{{=i%rinks + 1}}</td>
+<td>{{=pitch}}{{=i%arenas + 1}}</td>
 {{pass}}
 <td>{{=matches[i][0]}}</td>
 <td>:</td>

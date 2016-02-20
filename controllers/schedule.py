@@ -1,25 +1,39 @@
 # -*- coding: utf-8 -*-
 # try something like
 def index():
-	games = games = db(db.games.id > 0).select()
+	games = db(db.games.id > 0).select()
 	return locals()
 
 def game(): 
-	return dict(message="hello from schedule.py")
+	if(request.vars.game):
+		gameId = int(request.vars.game)
+	else:
+		redirect(URL('index'))
+	row = db.games(gameId)
+	game = row.name
+	pitch = row.pitch
+	return locals()
 
 def league():
-	if(request.vars.number):
+	if(request.vars.arenas):
+		arenas = int(request.vars.arenas)
+	else:
+		arenas = 1
+	if request.vars.number > 1:
 		num = int(request.vars.number)
 	else:
 		redirect(URL('index'))
-	if(request.vars.rinks):
-		rinks = int(request.vars.rinks)
-	else:
-		rinks = 1
 	if(request.vars.practice):
 		practice = True
 	else:
 		practice = False
+	if(request.vars.game):
+		gameId = int(request.vars.game)
+	else:
+		redirect(URL('index'))
+	row = db.games(gameId)
+	game = row.name
+	pitch = row.pitch
 	rotation = ["Team" + str(i+1) for i in range(num)]
 
 	if num % 2:
