@@ -1,34 +1,57 @@
 {{extend 'layout.html'}}
+{{if custom == 0:}}
 <h2>{{=game}} League Schedule</h2>
+{{else:}}
+<h2>Schedule for {{=it}}</h2>
+{{pass}}
 <style type="text/css">
 	th 
 	{
 		text-align: center;
 	}
 </style>
+{{if(custom!=0):}}
+<a href='{{=URL("league", vars=home)}}'>View Full Schedule</a>
+{{pass}}
 <table class="table table-striped table-bordered" style="text-align:center;">
-<tbody>
 <thead>
 	<tr>
 		<th>Sno</th>
-		{{if arenas>1:}}
+		{{if arenas>1 and custom != 1:}}
 		<th>Arena</th>
 		{{pass}}
 		<th colspan="3">Game</th>
+		<th>City</th>
 	</tr>
 </thead>
+<tbody>
+{{j=0}}
 {{for i in range(len(matches)):}}
+{{if custom==0 or (custom==1 and (pitch + str(i%arenas + 1)) == it) or (custom ==2 and (it in matches[i])):}}
 <tr>
-{{if arenas==1:}}
-<td>{{=i+1}}</td>
+{{if arenas==1 or custom == 1:}}
+<td>{{=j+1}}</td>
+{{j+=1}}
 {{else:}}
-<td>{{=i+1}}</td>
-<td>{{=pitch}}{{=i%arenas + 1}}</td>
+<td>{{=j+1}}</td>
+{{j+=1}}
+{{target = pitch + str(i%arenas+1)}}
+<td><a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="1", it=target).items())))}}'>{{=pitch}}{{=i%arenas + 1}}</a></td>
 {{pass}}
-<td>{{=matches[i][0]}}</td>
+<td>
+<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][0]).items())))}}'>
+{{=matches[i][0]}}
+</a>
+</td>
 <td>:</td>
-<td>{{=matches[i][1]}}</td>
+<td>
+<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][1]).items())))}}'>
+{{=matches[i][1]}}
+</a>
+</td>
+<td>{{=city}}</td>
 </tr>
+{{pass}}
 {{pass}}
 </tbody>
 </table>

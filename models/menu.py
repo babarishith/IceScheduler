@@ -5,13 +5,13 @@
 ## Customize your APP title, subtitle and menus here
 #########################################################################
 
-response.logo = H4("Ice Scheduler",_style="padding-top:0.4em;padding-left:0.3em")
+response.logo = H4("League Scheduler",_style="padding-top:0.4em;padding-left:0.3em")
 response.title = request.application.replace('_',' ').title()
 response.subtitle = ''
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
 response.meta.author = 'Rishith'
-response.meta.description = 'Ice Scheduler'
+response.meta.description = 'League Scheduler'
 response.meta.keywords = 'web2py, python, framework'
 response.meta.generator = 'Web2py Web Framework'
 

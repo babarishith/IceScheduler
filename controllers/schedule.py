@@ -31,9 +31,19 @@ def league():
 		gameId = int(request.vars.game)
 	else:
 		redirect(URL('index'))
+	if request.vars.custom:
+		custom = int(request.vars.custom)
+		it = request.vars.it
+	else:
+		custom=0
+	z=request.vars.copy()
+	home = z.copy()
+	home['custom']=0
 	row = db.games(gameId)
 	game = row.name
 	pitch = row.pitch
+	city = request.vars.city
+
 	rotation = ["Team" + str(i+1) for i in range(num)]
 
 	if num % 2:
