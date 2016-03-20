@@ -43,7 +43,11 @@ def league():
 	game = row.name
 	pitch = row.pitch
 	city = request.vars.city
-
+	stime = str(request.vars.stime)
+	if request.vars.glen:
+		glen = str(request.vars.glen)
+	else:
+		glen = 60
 	rotation = ["Team" + str(i+1) for i in range(num)]
 
 	if num % 2:

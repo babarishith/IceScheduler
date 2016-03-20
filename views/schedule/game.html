@@ -35,9 +35,65 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="time" value="1">
+          Include Time
+        </label>
+      </div>
+    </div>
+  </div>
+  <div id="tshow" style="display:none">
+  <div class="form-group">
+    <label for="glen" class="col-sm-3 control-label">Game Length</label>
+    <div class="col-sm-9">
+      <input type="number" name="glen" min="1" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="stime" class="col-sm-3 control-label">Start Time</label>
+    <div class="col-sm-9">
+      <input type="time" name="stime" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="glen" class="col-sm-3 control-label">Games Per {{=pitch}} each day</label>
+    <div class="col-sm-9">
+      <input type="number" name="glen" min="1" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="sdate" class="col-sm-3 control-label">Start Date</label>
+    <div class="col-sm-9">
+      <input type="date" name="sdate" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="week" class="col-sm-3 control-label">Select Days</label>
+    <div class="col-sm-9">
+      <select multiple class="form-control" name="week">
+        <option>Sunday</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+      </select>
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
       <button type="submit" class="btn btn-default">Create a Schedule</button>
     </div>
   </div>
 </form>
 </div>
 </div>
+<script type="text/javascript">
+  $('input[name=time]').prop("checked", false)
+  $('input[name=time]').click(function(){
+    $("#tshow").toggle(300);
+  });
+</script>

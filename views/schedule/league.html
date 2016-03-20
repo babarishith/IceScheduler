@@ -4,6 +4,7 @@
 {{else:}}
 <h2>Schedule for {{=it}}</h2>
 {{pass}}
+{{=request.vars}}
 <style type="text/css">
 	th 
 	{
@@ -49,6 +50,10 @@
 {{=matches[i][1]}}
 </a>
 </td>
+{{if stime:}}
+<td>{{=stime}}</td>
+<td>{{=stime}}</td>
+{{pass}}
 <td>{{=city}}</td>
 </tr>
 {{pass}}
