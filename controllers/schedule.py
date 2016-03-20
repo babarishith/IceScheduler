@@ -78,6 +78,8 @@ def league():
 	#parsing input
 	if request.vars.gdata:
 		data = request.vars.gdata
+		if len(data) == 0:
+			data = "False"
 	else:
 		data = "False"
 
@@ -113,5 +115,10 @@ def league():
 				end = start + timedelta(minutes = int(glen))
 	else:
 		arr = 0
+	err = 0
+	if len(slots) == 0 and gtime == 1:
+		gtime = 0
+		err = 1
+		error.append('Invalid Game Data Input')
 
 	return locals()

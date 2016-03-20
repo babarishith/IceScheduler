@@ -6,15 +6,15 @@
 {{pass}}
 <!-- {{=request.vars}}</br>
 {{=slots}}</br> -->
-{{if len(error) > 0:}}
+{{if (len(error) > 0 and gtime == 1) or err == 1:}}
 <div id = "error" class="alert alert-danger">
 <strong>Errors in Data</strong>
-{{pass}}
 <ul>
 {{for i in error:}}
 <li>{{=i}}</li>
 </ul>
 </div>
+{{pass}}
 {{pass}}
 <style type="text/css">
 	th 
