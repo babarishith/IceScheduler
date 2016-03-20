@@ -4,7 +4,18 @@
 {{else:}}
 <h2>Schedule for {{=it}}</h2>
 {{pass}}
-{{=request.vars}}
+<!-- {{=request.vars}}</br>
+{{=slots}}</br> -->
+{{if len(error) > 0:}}
+<div id = "error" class="alert alert-danger">
+<strong>Errors in Data</strong>
+{{pass}}
+<ul>
+{{for i in error:}}
+<li>{{=i}}</li>
+</ul>
+</div>
+{{pass}}
 <style type="text/css">
 	th 
 	{
@@ -18,45 +29,63 @@
 <thead>
 	<tr>
 		<th>Sno</th>
+		{{if gtime==1:}}
+			<th>Date</th>
+			<th>City</th>
+		{{pass}}
 		{{if arenas>1 and custom != 1:}}
-		<th>Arena</th>
+			<th>Arena</th>
 		{{pass}}
 		<th colspan="3">Game</th>
-		<th>City</th>
+		{{if gtime==1:}}
+			<th>Start</th>
+			<th>End</th>
+		{{pass}}
 	</tr>
 </thead>
 <tbody>
 {{j=0}}
 {{for i in range(len(matches)):}}
-{{if custom==0 or (custom==1 and (pitch + str(i%arenas + 1)) == it) or (custom ==2 and (it in matches[i])):}}
-<tr>
-{{if arenas==1 or custom == 1:}}
-<td>{{=j+1}}</td>
-{{j+=1}}
-{{else:}}
-<td>{{=j+1}}</td>
-{{j+=1}}
-{{target = pitch + str(i%arenas+1)}}
-<td><a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="1", it=target).items())))}}'>{{=pitch}}{{=i%arenas + 1}}</a></td>
-{{pass}}
-<td>
-<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][0]).items())))}}'>
-{{=matches[i][0]}}
-</a>
-</td>
-<td>:</td>
-<td>
-<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][1]).items())))}}'>
-{{=matches[i][1]}}
-</a>
-</td>
-{{if stime:}}
-<td>{{=stime}}</td>
-<td>{{=stime}}</td>
-{{pass}}
-<td>{{=city}}</td>
-</tr>
-{{pass}}
+	<!--Check if valid-->
+	{{if custom==0 or (custom==1 and (pitch + str(i%arenas + 1)) == it) or (custom ==2 and (it in matches[i])):}}
+		<tr>
+		<td>{{=j+1}}</td>
+		{{j+=1}}
+		{{if gtime == 1:}}
+			{{if i < len(slots):}}
+				<td>{{=slots[i][0]}}</td>
+				<td>{{=slots[i][1]}}</td>
+			{{else:}}
+				<td>-</td>
+				<td>-</td>
+			{{pass}}
+		{{pass}}
+		{{if arenas!=1 and custom != 1:}}
+			{{target = pitch + str(i%arenas+1)}}
+			<td><a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="1", it=target).items())))}}'>{{=pitch}}{{=i%arenas + 1}}</a></td>
+		{{pass}}
+		<td>
+		<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][0]).items())))}}'>
+		{{=matches[i][0]}}
+		</a>
+		</td>
+		<td>:</td>
+		<td>
+		<a href='{{=URL("league", vars=dict(list(z.items()) + list(dict(custom="2", it=matches[i][1]).items())))}}'>
+		{{=matches[i][1]}}
+		</a>
+		</td>
+		{{if gtime == 1:}}
+			{{if i < len(slots):}}
+				<td>{{=slots[i][2]}}</td>
+				<td>{{=slots[i][3]}}</td>
+			{{else:}}
+				<td>-</td>
+				<td>-</td>
+			{{pass}}
+		{{pass}}
+		</tr>
+	{{pass}}
 {{pass}}
 </tbody>
 </table>

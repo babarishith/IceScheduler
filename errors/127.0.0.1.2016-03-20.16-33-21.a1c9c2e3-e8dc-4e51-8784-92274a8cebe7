@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> an integer is required"
+p3
+sS'layer'
+p4
+S'/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n# try something like\nfrom datetime import datetime, timedelta\nfrom time import strftime\n\ndef index():\n\tgames = db(db.games.id > 0).select()\n\treturn locals()\n\ndef game(): \n\tif(request.vars.game):\n\t\tgameId = int(request.vars.game)\n\telse:\n\t\tredirect(URL(\'index\'))\n\trow = db.games(gameId)\n\tgame = row.name\n\tpitch = row.pitch\n\treturn locals()\n\ndef league():\n\tif(request.vars.arenas):\n\t\tarenas = int(request.vars.arenas)\n\telse:\n\t\tarenas = 1\n\tif request.vars.number > 1:\n\t\tnum = int(request.vars.number)\n\telse:\n\t\tredirect(URL(\'index\'))\n\tif(request.vars.practice):\n\t\tpractice = True\n\telse:\n\t\tpractice = False\n\tif(request.vars.game):\n\t\tgameId = int(request.vars.game)\n\telse:\n\t\tredirect(URL(\'index\'))\n\tif request.vars.custom:\n\t\tcustom = int(request.vars.custom)\n\t\tit = request.vars.it\n\telse:\n\t\tcustom=0\n\tz=request.vars.copy()\n\thome = z.copy()\n\thome[\'custom\']=0\n\trow = db.games(gameId)\n\tgame = row.name\n\tpitch = row.pitch\n\tif request.vars.glen:\n\t\tglen = str(request.vars.glen)\n\telse:\n\t\tglen = 60\n\trotation = ["Team" + str(i+1) for i in range(num)]\n\n\tif num % 2:\n\t\trotation.append(\'BYE\')\n\t\tnum += 1\n\n\tfixtures = []\n\tfor i in range(0, num-1):\n\t\tfixtures.append(rotation)\n\t\trotation = [rotation[0]] + [rotation[-1]] + rotation[1:-1]\n\tmatches = []\n\tfor f in fixtures:    \n\t\tfor i in range(len(f)/2):\n\t\t\tif "BYE" not in (f[i], f[num-i-1]):\n\t\t\t\tif practice:\n\t\t\t\t\tmatches.append(tuple((f[i], "Practice")))\n\t\t\t\t\tmatches.append(tuple((f[num-i-1], "Practice")))\n\t\t\t\tmatches.append(tuple((f[i], f[num-i-1])))\n\n\t#parsing input\n\tif request.vars.gdata:\n\t\tdata = request.vars.gdata\n\telse:\n\t\tdata = "False"\n\n\tslots = []\n\tif data != "False":\n\t\tarr = data.split(\'\\r\\n\')\n\t\tfor row in arr:\n\t\t\tvalues = row.split(\',\')\n\t\t\tst = values[3].split(\':\')\n\t\t\tet = values[4].split(\':\')\n\n\t\t\t#time divisions\n\t\t\tstart = datetime.now().replace(hour=int(st[0]), minute=int(st[1]))\n\t\t\tend = start + timedelta(minutes = int(glen))\n\t\t\tdend = datetime.now().replace(hour=et[0], minute=et[1])\n\t\t\twhile end <= dend:\n\t\t\t\tslots.append([values[0], values[1], strftime("%H:%M", start) , strftime("%H:%M", end)])\n\t\t\t\tstart = end\n\t\t\t\tend = start + timedelta(minutes = int(glen))\n\telse:\n\t\tarr = 0\n\n\treturn locals()\nresponse._vars=response._caller(league)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rishith/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py", line 97, in <module>\n  File "/home/rishith/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rishith/web2py/applications/IceScheduler/controllers/schedule.py", line 88, in league\n    dend = datetime.now().replace(hour=et[0], minute=et[1])\nTypeError: an integer is required\n'
+p11
+s.

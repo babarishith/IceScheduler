@@ -18,12 +18,6 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="city" class="col-sm-3 control-label">City</label>
-    <div class="col-sm-9">
-      <input type="text" name="city" required="true" class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <div class="checkbox">
         <label>
@@ -51,36 +45,17 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="stime" class="col-sm-3 control-label">Start Time</label>
+    <label for="gskip" class="col-sm-3 control-label">Gap between games</label>
     <div class="col-sm-9">
-      <input type="time" name="stime" class="form-control">
+      <input type="number" name="gskip" min="0" class="form-control">
     </div>
   </div>
   <div class="form-group">
-    <label for="glen" class="col-sm-3 control-label">Games Per {{=pitch}} each day</label>
+    <label for="gdata" class="col-sm-3 control-label">Game Slot Data (testing)</label>
     <div class="col-sm-9">
-      <input type="number" name="glen" min="1" class="form-control">
+      <textarea name="gdata" rows="5" class="form-control"></textarea>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="sdate" class="col-sm-3 control-label">Start Date</label>
-    <div class="col-sm-9">
-      <input type="date" name="sdate" class="form-control">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="week" class="col-sm-3 control-label">Select Days</label>
-    <div class="col-sm-9">
-      <select multiple class="form-control" name="week">
-        <option>Sunday</option>
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-        <option>Saturday</option>
-      </select>
-    </div>
+    <span id="helpBlock" class="col-sm-offset-3 col-sm-9 help-block">Format: date, city, start, end . Eg: 15/3/2016, Hyderabad, 17:00, 22:00</span>
   </div>
   </div>
   <div class="form-group">

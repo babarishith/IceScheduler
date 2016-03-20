@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # try something like
+from datetime import datetime, timedelta
+
 def index():
 	games = db(db.games.id > 0).select()
 	return locals()
@@ -42,8 +44,14 @@ def league():
 	row = db.games(gameId)
 	game = row.name
 	pitch = row.pitch
-	city = request.vars.city
-	stime = str(request.vars.stime)
+	if request.vars.time:
+		gtime = int(request.vars.time)
+	else:
+		gtime = 0
+	if request.vars.gskip:
+		gskip = int(request.vars.gskip)
+	else:
+		gskip = 0
 	if request.vars.glen:
 		glen = str(request.vars.glen)
 	else:
@@ -66,4 +74,44 @@ def league():
 					matches.append(tuple((f[i], "Practice")))
 					matches.append(tuple((f[num-i-1], "Practice")))
 				matches.append(tuple((f[i], f[num-i-1])))
+
+	#parsing input
+	if request.vars.gdata:
+		data = request.vars.gdata
+	else:
+		data = "False"
+
+	slots = []
+	error = []
+	if data != "False":
+		arr = data.split('\r\n')
+		i = 0
+		for row in arr:
+			if row == "":
+				continue
+			i += 1
+			values = row.split(',')
+			if len(values) != 4:
+				error.append('Wrong number of arguments at line ' + str(i))
+				continue
+			st = values[2].split(':')
+			if len(st) !=2:
+				error.append('Wrong format for start time at line ' + str(i))
+				continue
+			et = values[3].split(':')
+			if len(et) !=2:
+				error.append('Wrong format for end time at line ' + str(i))
+				continue
+
+			#time divisions
+			start = datetime.now().replace(hour=int(st[0]), minute=int(st[1]))
+			end = start + timedelta(minutes = int(glen))
+			dend = datetime.now().replace(hour=int(et[0]), minute=int(et[1]))
+			while end <= dend:
+				slots.append([values[0], values[1], start.strftime("%H:%M") , end.strftime("%H:%M")])
+				start = end + timedelta(minutes = int(gskip))
+				end = start + timedelta(minutes = int(glen))
+	else:
+		arr = 0
+
 	return locals()
