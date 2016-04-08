@@ -12,6 +12,7 @@ def game():
 	else:
 		redirect(URL('index'))
 	row = db.games(gameId)
+	groups = db(db.groups.game == gameId).select()
 	game = row.name
 	pitch = row.pitch
 	return locals()
@@ -38,6 +39,7 @@ def league():
 		it = request.vars.it
 	else:
 		custom=0
+	group = request.vars.group
 	z=request.vars.copy()
 	home = z.copy()
 	home['custom']=0
@@ -56,6 +58,8 @@ def league():
 		glen = str(request.vars.glen)
 	else:
 		glen = 60
+	if group != 0:
+		glen = group
 	rotation = ["Team" + str(i+1) for i in range(num)]
 
 	if num % 2:

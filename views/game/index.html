@@ -1,6 +1,6 @@
 {{extend 'layout.html'}}
 <h2>Games</h2>
-<h4><a href='{{=URL("add")}}'>Add Game</a></h4>
+<!-- <h4><a href='{{=URL("add")}}'>Add Game</a></h4> -->
 <table class="table table-striped">
 <tbody>
 {{if not games:}}
@@ -12,7 +12,9 @@ No Games
 	<td>{{=i.pitch}}</td>
 	<td><a href={{=URL("edit", args=[i.id])}}>edit game</a></td>
 	<td><a href={{=URL("delete", args=[i.id])}}>delete</a></td>
+	<td><a href={{=URL("groups", "index", args=[i.id])}}>groups</a></td>
 </tr>
 {{pass}}
 </tbody>
 </table>
+<button><a href='{{=URL("add")}}'>Add Game</a></button>

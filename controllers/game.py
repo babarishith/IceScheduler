@@ -28,3 +28,4 @@ def add():
 	if form.process().accepted:
 		redirect(URL('index'))
 	return locals()
+	

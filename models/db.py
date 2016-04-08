@@ -90,8 +90,13 @@ auth.settings.reset_password_requires_verification = True
 #########################################################################
 
 db.define_table('games',
-               Field('name', 'string', label='Name', unique=True),
+               Field('name', 'string', label='Name', unique=True, requires=IS_NOT_EMPTY()),
                Field('pitch', 'string', label='Pitch (Sports Field)', requires=IS_NOT_EMPTY()))
+
+db.define_table('groups',
+                Field('game', db.games, readable=False, writable=False),
+                Field('name', 'string', unique=True, requires=IS_NOT_EMPTY()),
+                Field('glength', 'integer', label='Game Length', requires=IS_INT_IN_RANGE(1, 1000)))
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
