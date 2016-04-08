@@ -10,10 +10,10 @@ No Groups
 <tr>
 	<td>{{=i.name}}</td>
 	<td>{{=i.glength}}</td>
-	<td><a href={{=URL("edit", args=[gid])}}>edit group</a></td>
-	<td><a href={{=URL("delete", args=[gid])}}>delete</a></td>
+	<td><a href={{=URL("edit", args=[gid,i.id])}}>edit group</a></td>
+	<td><a href={{=URL("delete", args=[gid,i.id])}}>delete</a></td>
 </tr>
 {{pass}}
 </tbody>
 </table>
-<button><a href='{{=URL("add", args=[gid])}}'>Add Group</a></button>
+<a href='{{=URL("add", args=[gid])}}'><button>Add Group</button></a>

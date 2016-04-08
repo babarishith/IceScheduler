@@ -13,7 +13,8 @@ def add():
 		i = request.args[0]
 	except IndexError:
 		redirect(URL('game','index'))
-	form = crud.create(db.groups)
+	#form = crud.create(db.groups)
+	form = SQLFORM(db.groups)
 	form.vars.game = i
 	if form.process().accepted:
 		redirect(URL('index', args=[request.args[0]]))
@@ -21,19 +22,22 @@ def add():
 
 def edit():
 	try:
-		request.args[0]
+		request.args[1]
 	except IndexError:
 		redirect(URL('game','index'))
-	form=crud.update(db.groups, request.args(0))
+	record = db.groups(request.args[1])
+	db.groups.id.readable = False
+	form = SQLFORM(db.groups, record)
+	# form = crud.update(db.groups, request.args(1))
 	if form.process().accepted:
 		redirect(URL('index', args=[request.args[0]]))
 	return locals()
 
 def delete():
 	try:
-		request.args[0]
+		request.args[1]
 	except IndexError:
 		redirect(URL('game','index'))
-	db(db.groups.id == request.args(0)).delete()
+	db(db.groups.id == request.args(1)).delete()
 	redirect(URL('index', args=[request.args[0]]))
 	return locals()
