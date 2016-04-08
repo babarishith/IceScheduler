@@ -1,5 +1,2 @@
-databases/storage.sqlite
-databases/sql.log
-databases/*
 sessions/*
 errors/*
