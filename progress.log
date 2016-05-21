@@ -7,3 +7,6 @@
 [2016-02-20 13:31:03] CREATE schedule/index.html: 0
 [2016-02-20 14:01:29] CREATE game.py: 0
 [2016-02-20 14:06:58] CREATE game/index.html: 0
+[2016-05-12 12:33:58] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/js/editabletable.js: 127
+[2016-05-21 11:43:09] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/css/materialize.css: 6902
+[2016-05-21 11:43:50] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/js/materialize.js: 5665

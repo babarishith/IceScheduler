@@ -1,4 +1,5 @@
 {{extend 'layout.html'}}
+<script src="{{=URL('static','js/editabletable.js')}}"></script>
 {{if custom == 0:}}
 <h2>{{=game}} League Schedule</h2>
 {{else:}}
@@ -25,7 +26,7 @@
 {{if(custom!=0):}}
 <a href='{{=URL("league", vars=home)}}'>View Full Schedule</a>
 {{pass}}
-<table class="table table-striped table-bordered" style="text-align:center;">
+<table class="table table-striped table-bordered" style="text-align:center;" id="editt">
 <thead>
 	<tr>
 		<th>Sno</th>
@@ -89,3 +90,9 @@
 {{pass}}
 </tbody>
 </table>
+
+<script type="text/javascript">
+	$(function(){
+		$('editt').editableTableWidget();
+	});
+</script>
