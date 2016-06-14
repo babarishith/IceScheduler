@@ -10,3 +10,6 @@
 [2016-05-12 12:33:58] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/js/editabletable.js: 127
 [2016-05-21 11:43:09] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/css/materialize.css: 6902
 [2016-05-21 11:43:50] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/js/materialize.js: 5665
+[2016-06-14 09:40:11] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/stellar.js: 553
+[2016-06-14 09:40:27] DELETE IceScheduler/static/stellar.js: -553
+[2016-06-14 09:40:42] UPLOAD /home/rishith/web2py/applications/IceScheduler/static/js/stellar.js: 553
